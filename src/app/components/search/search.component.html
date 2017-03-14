@@ -1,3 +1,30 @@
-<p>
-  search works!
-</p>
+<section class="container mt-5">
+  <div class="row">
+    <div class="col-md-3">
+      <label for="termn">Buscador de Artistas</label>
+      <input [(ngModel)]="termn"
+        (keyup)="searchArtist()"
+        type="text" name="termn" 
+        class="form-control" 
+        placeholder="Buscar por artista..."
+      >
+      <hr />
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-3 text-center puntero" 
+          [routerLink]="['/artist', artist.id ]"
+          *ngFor="let artist of _spotifyService.artists" 
+        >
+      
+          <!--el interrogante indica a angular que si existe la imagen la cargue, pero vamos a 
+          manejar la gestion de no imagenes a través de un pipe personalizado mejor-->
+         <!--<img [src]="artist.images[1]?.url" class="img-fluid img-thumbnail">-->
+         <img [src]="artist.images | sinfoto" class="img-fluid img-thumbnail">
+         <p>{{artist.name}}</p>
+         <hr/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

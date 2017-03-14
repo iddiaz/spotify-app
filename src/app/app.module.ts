@@ -12,6 +12,8 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/share/navbar/navbar.component';
 import { SearchComponent } from './components/search/search.component';
 import { APPROUTING } from './app.routes';
+import { SinfotoPipe } from './pipes/sinfoto.pipe';
+import { ArtistComponent } from './components/artist/artist.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { APPROUTING } from './app.routes';
     AppComponent,
     HomeComponent,
     NavbarComponent,
-    SearchComponent
+    SearchComponent,
+    SinfotoPipe,
+    ArtistComponent
   ],
   imports: [
     BrowserModule,
