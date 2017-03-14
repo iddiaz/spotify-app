@@ -8,24 +8,31 @@ export class SpotifyService {
   artists: any[] = [];
 
   urlSearch: string = 'https://api.spotify.com/v1/search?';
+  urlSearchArtistId: string = 'https://api.spotify.com/v1/artists/';
 
   constructor( private http: Http ) { }
 
-  getArtist( term: string ) {
+  getArtists( term: string ) {
     let query = `q=${term}&type=artist`;
     let url = this.urlSearch + query;
-    
-    //3.devuelve un obserbable a algo 
-    return this.http.get( url )
-    //4. lo convertimos a objeto usando un map
-      .map( res => {
-        //5.la respuesta cuando se usa a traves del map, trae una propiedad que se llama json        
-        // console.log(res.json().artists.items );
-        this.artists = res.json().artists.items;
-        console.log(this.artists);
 
-        //6. si retornamos la respuesta ya la podemos trabajar desde el componente
-        return res.json().artists.items; //SearchComponent
+    return this.http.get( url )
+      .map( res => {
+        this.artists = res.json().artists.items;
+        return res.json().artists.items;
+      });
+
+  }
+
+    getArtist( termId: string ) {
+    let query = `${termId}`;
+    let url = this.urlSearchArtistId + query;
+
+    return this.http.get( url )
+      .map( res => {
+        console.log( res.json() );
+
+        return res.json();
       });
 
   }

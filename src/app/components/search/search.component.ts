@@ -9,17 +9,15 @@ import { SpotifyService } from './../../services/spotify.service';
 })
 export class SearchComponent implements OnInit {
 
+  termn: string = '';
+
   constructor( private _spotifyService: SpotifyService) { }
 
-  ngOnInit() {
-    //1.llama al observable, pero por si solo no funciona ya que no estamos escuchando la respuesta
-    this._spotifyService.getArtist('metallica')
-    //2.necesitamos escuchar esa respuesta, para eso necesitamos suscribirnos.
-      .subscribe( data => {
-        //7.tenemos la respuesta en el componente para trabajar
-        console.log('ESTO ES DEL SEARCH.component', data);
-      });
+  ngOnInit() { }
 
+  searchArtist() {
+    this._spotifyService.getArtists(this.termn)
+      .subscribe();
   }
 
 }
