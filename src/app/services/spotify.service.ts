@@ -19,22 +19,36 @@ export class SpotifyService {
     return this.http.get( url )
       .map( res => {
         this.artists = res.json().artists.items;
+        console.log('GET ARTISTAS: ', res.json().artists.items);
         return res.json().artists.items;
       });
 
   }
 
-    getArtist( termId: string ) {
-    let query = `${termId}`;
+  getArtist( id: string ) {
+    let query = `${id}`;
     let url = this.urlSearchArtistId + query;
 
     return this.http.get( url )
       .map( res => {
-        console.log( res.json() );
-
         return res.json();
       });
 
   }
+
+  getTop( id: string ) {
+    let query = `${id}/top-tracks?country=es`;
+    let url = this.urlSearchArtistId + query;
+
+    return this.http.get( url )
+      .map( res => {
+        console.log( 'GET TOP: ', res.json().tracks );
+
+        return res.json().tracks;
+      });
+
+  }
+
+
 
 }
